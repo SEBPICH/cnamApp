@@ -20,8 +20,8 @@ exports.login = (req, res) => {
 
         const uuid = uuidv4 ();
         const utilisateur = {
-          nom: "martin",
-          prenom: "jean",
+          lastname: "Maurice",
+          firstname: "Emmanuel",
           login: "marsstin",
           email : "martin.jean@gmail.com",
           password : "toto",
@@ -30,17 +30,21 @@ exports.login = (req, res) => {
 
         const user = {
           id: utilisateur.id,
-          name: utilisateur.nom,
+          name: utilisateur.lastname,
           email: utilisateur.email
         };
-      
-        
+
+        if(req.body.login !== utilisateur.login || req.body.password !== utilisateur.password) {
+          console.log ("Login ou mot de passe incorrect");
+          res.status(401).send('Login ou mot de passe incorrect');
+          res.send();
+        }
+    
         let accessToken = generateAccessToken(user);
         res.setHeader('Authorization', `Bearer ${accessToken}`);
 
         console.log (accessToken);
 
-      
         res.send(utilisateur);
     };    
 };
