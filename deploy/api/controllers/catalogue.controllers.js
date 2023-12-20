@@ -126,6 +126,21 @@ exports.get = (req, res) => {
 	
 	res.setHeader('Content-Type', 'application/json');
       
-    res.send(catalogue);
-   };    
+    const searchTerm = req.query.searchTerm;
+
+	if (searchTerm) {
+		
+		const filteredCatalogue = catalogue.filter(
+		(product) =>
+			product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+			product.category.toLowerCase().includes(searchTerm.toLowerCase())
+		);
+
+		res.send(filteredCatalogue);
+	} else {
+		res.send(catalogue);
+	}
+	res.send(catalogue);
+};
+
 

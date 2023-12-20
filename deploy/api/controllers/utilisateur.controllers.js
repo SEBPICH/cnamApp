@@ -22,7 +22,7 @@ exports.login = (req, res) => {
         const utilisateur = {
           lastname: "Maurice",
           firstname: "Emmanuel",
-          login: "marsstin",
+          login: "emma",
           email : "martin.jean@gmail.com",
           password : "toto",
           id : uuid
