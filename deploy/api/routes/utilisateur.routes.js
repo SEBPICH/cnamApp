@@ -5,9 +5,9 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-
-    // login utilisateur
     router.post("/login", utilisateur.login);
+    router.post("/createuser", utilisateur.createUser)
+    router.get("/getuserinfo", checkJwt, utilisateur.getUserInfo);
   
     app.use('/api/utilisateur', router);
   };
